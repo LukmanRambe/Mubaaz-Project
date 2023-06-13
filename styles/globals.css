@@ -1,3 +1,61 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root,
+.root,
+#root,
+#docs-root {
+  --primary-40: #e8f3f1;
+  --primary-60: #d1e5e2;
+  --primary-100: #96b4ac;
+  --primary-120: #7d9e9b;
+  --primary-140: #66888b;
+  --primary-160: #51727a;
+  --primary-180: #3f5d69;
+  --primary-200: #005b3f;
+}
+
+#__next {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+:focus-visible {
+  outline: none;
+}
+
+.pg-container {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.pg-item {
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: rgb(107 114 128 / var(--tw-text-opacity));
+  background: #ffffff;
+}
+
+.pg-item:hover {
+  color: #ffffff;
+  background: var(--primary-120);
+  transition: all ease-in-out 150ms;
+}
+
+.pg-item:active {
+  color: #ffffff;
+  background: var(--primary-140);
+  transition: all ease-in-out 150ms;
+}
+
+.pg-item-active {
+  background: var(--primary-160);
+  color: #ffffff;
+}
+
+.pg-item-active:hover {
+  background: var(--primary-160);
+}
