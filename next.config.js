@@ -5,6 +5,15 @@ const nextConfig = {
   images: {
     domains: ['tailwindui.com'],
   },
+  async redirects() {
+    return [
+      {
+        source: '/admin',
+        destination: '/admin/login',
+        permanent: false,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
