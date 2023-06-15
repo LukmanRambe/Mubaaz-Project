@@ -39,7 +39,7 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({
     },
     {
       onSuccess: async (response) => {
-        if (response.status === 204) {
+        if (response.status === 200) {
           setShowToast(true);
           setToastMessage(`${dataName} berhasil dihapus`);
           setToastType('success');
@@ -80,7 +80,7 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({
         } else {
           setToastMessage(`${dataName} gagal dihapus`);
           setShowToast(true);
-          setToastType('success');
+          setToastType('error');
 
           setTimeout(() => {
             setShowModal(false);
