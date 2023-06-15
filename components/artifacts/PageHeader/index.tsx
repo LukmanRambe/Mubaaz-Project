@@ -78,12 +78,10 @@ const PageHeader: React.FC<PageHeaderProps> = ({
               />
             </div>
 
-            <div>
-              <AddButton pageLink={pageLink} buttonText={buttonText} />
-            </div>
+            <AddButton pageLink={pageLink} buttonText={buttonText} />
           </div>
 
-          <div className="relative flex items-center min-w-fit">
+          <div className="relative flex items-center min-w-full">
             <span className="absolute ml-3">
               <AiOutlineSearch className="w-6 h-6 pointer-events-none text-primary-120" />
             </span>
