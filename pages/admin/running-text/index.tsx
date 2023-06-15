@@ -178,7 +178,7 @@ const RunningText: NextPageWithLayout = () => {
                                     handleOpenDetailModal(runningText.id)
                                   }
                                 >
-                                  <div className="p-2 bg-blue-600 rounded-lg cursor-pointer">
+                                  <div className="p-2 transition-all duration-150 bg-blue-500 rounded-lg outline-none cursor-pointer hover:bg-blue-600 active:bg-blue-700 focus:outline-none focus:bg-blue-600">
                                     <TbReportSearch className="text-lg text-white cursor-pointer" />
                                   </div>
                                 </button>
@@ -187,7 +187,7 @@ const RunningText: NextPageWithLayout = () => {
                                     handleOpenEditModal(runningText.id)
                                   }
                                 >
-                                  <div className="p-2 bg-yellow-400 rounded-lg cursor-pointer">
+                                  <div className="p-2 transition-all duration-150 bg-yellow-400 rounded-lg outline-none cursor-pointer hover:bg-yellow-500 active:bg-yellow-600 focus:outline-none focus:bg-yellow-600">
                                     <BiEdit className="text-lg text-white cursor-pointer" />
                                   </div>
                                 </button>
