@@ -17,10 +17,10 @@ const useRemoteGetAllUstadz = (
 
   const newData = useMemo<AllUstadzType | undefined>(() => {
     return {
-      data: data?.data.data,
+      data: data?.data.data.data,
       pagination: data?.data.meta,
     };
-  }, [data?.data]);
+  }, [data?.data.data.data]);
 
   return { data: newData, error, isFetching, refetch };
 };
