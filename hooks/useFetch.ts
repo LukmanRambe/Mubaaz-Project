@@ -6,11 +6,17 @@ import { fetchAxios } from '../libs/axios';
 export const useFetch = (queryKey: string | [string, {}], endpoint: string) => {
   const { data, error, refetch, isFetching } = useQuery(
     queryKey,
-    () =>
-      fetchAxios.get(endpoint).catch((err) => {
-        throw err;
-      }),
-    { keepPreviousData: true, staleTime: 3600000 }
+    async () => fetchAxios.get(endpoint),
+    {
+      keepPreviousData: true,
+      staleTime: 3600000,
+      onSuccess: async (response) => {
+        return response;
+      },
+      onError: async (error) => {
+        console.log(error);
+      },
+    }
   );
 
   return { data, error, refetch, isFetching };
