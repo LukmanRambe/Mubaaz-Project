@@ -22,5 +22,5 @@ export type UstadzType = {
 
 export type AllUstadzDropdownType = {
   id: string;
-  namaUstadz: string;
+  nama_ustadz: string;
 };
