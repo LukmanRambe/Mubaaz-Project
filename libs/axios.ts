@@ -17,15 +17,6 @@ fetchAxios.interceptors.request.use((config): InternalAxiosRequestConfig => {
         'Authorization',
         `Bearer ${Cookies.get('xmt')}`
       );
-
-      if (config.data !== Blob) {
-        (config.headers as AxiosHeaders).set(
-          'Content-Type',
-          'application/json'
-        );
-      }
-    } else {
-      (config.headers as AxiosHeaders).set('Content-Type', 'application/json');
     }
   }
 
