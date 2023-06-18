@@ -5,7 +5,7 @@ import type {
   EditKhutbahFormValues,
 } from '../../ts/types/schema/KhutbahSchema';
 
-export const createKhutbahSchema: Yup.Schema<CreateKhutbahFormValues> =
+export const createKhutbahSchema: Yup.SchemaOf<CreateKhutbahFormValues> =
   Yup.object().shape({
     ustadz_id: Yup.object().shape({
       label: Yup.string().required('Mohon pilih Khatib'),
@@ -16,7 +16,7 @@ export const createKhutbahSchema: Yup.Schema<CreateKhutbahFormValues> =
     tanggal: Yup.date().required('Mohon isi Tanggal'),
   });
 
-export const editKhutbahSchema: Yup.Schema<EditKhutbahFormValues> =
+export const editKhutbahSchema: Yup.SchemaOf<EditKhutbahFormValues> =
   Yup.object().shape({
     ustadz_id: Yup.object().shape({
       label: Yup.string().required('Mohon pilih Khatib'),

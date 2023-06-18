@@ -5,7 +5,7 @@ import type {
   EditRunningTextFormValues,
 } from '../../ts/types/schema/RunningTextSchema';
 
-export const createRunningTextSchema: Yup.Schema<CreateRunningTextFormValues> =
+export const createRunningTextSchema: Yup.SchemaOf<CreateRunningTextFormValues> =
   Yup.object().shape({
     text: Yup.string()
       .max(70, 'Teks tidak boleh lebih dari 70 karakter')
@@ -18,7 +18,7 @@ export const createRunningTextSchema: Yup.Schema<CreateRunningTextFormValues> =
       .required('Mohon pilih Urutan'),
   });
 
-export const editRunningTextSchema: Yup.Schema<EditRunningTextFormValues> =
+export const editRunningTextSchema: Yup.SchemaOf<EditRunningTextFormValues> =
   Yup.object().shape({
     text: Yup.string()
       .max(70, 'Teks tidak boleh lebih dari 70 karakter')
