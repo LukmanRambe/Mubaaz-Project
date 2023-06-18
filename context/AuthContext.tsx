@@ -116,7 +116,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         Cookies.remove('xmxt');
 
         if (res.status === 200) {
-          const expiredIn = res.data.expires_in;
+          const expiredIn = res.data.expires_in * 10000;
 
           Cookies.set('xmt', res.data.access_token);
           Cookies.set('xmxt', JSON.stringify(expiredIn));
@@ -152,7 +152,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
           setIsLoading(false);
           setIsAuthenticated(true);
 
-          const expiredIn = res.data.expires_in;
+          const expiredIn = res.data.expires_in * 10000;
 
           Cookies.set('xmt', res.data.access_token);
           Cookies.set('xmxt', JSON.stringify(expiredIn));
