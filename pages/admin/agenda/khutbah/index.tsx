@@ -41,8 +41,9 @@ const Khutbah: NextPageWithLayout = () => {
     [allKhutbahData?.pagination?.perPage]
   );
   const totalItems = useMemo(
-    () => allKhutbahData?.data?.length || 0,
-    [allKhutbahData?.data?.length]
+    () =>
+      allKhutbahData?.data?.length ?? allKhutbahData?.pagination?.total ?? 0,
+    [allKhutbahData?.data?.length, allKhutbahData?.pagination?.total]
   );
   const [startItem, setStartItem] = useState<number>(1);
   const [endItem, setEndItem] = useState<number>(dataLimit);
