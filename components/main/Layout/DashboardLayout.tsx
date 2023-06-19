@@ -8,13 +8,14 @@ import AuthProvider from '../../../context/AuthContext';
 import Navbar from '../Navbar';
 import Sidebar from '../Sidebar';
 
-type AppMainProps = {
+type DashboardLayoutProps = {
   children: ReactNode;
 };
 
-const AppMain: React.FC<AppMainProps> = ({ children }) => {
+const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
   registerLocale('id', id);
   moment.updateLocale('id', {
+    weekdays: ['Ahad', 'Senin', 'Selasa', 'Rabu', 'Kamis', "Jum'at", 'Sabtu'],
     months: [
       'Januari',
       'Februari',
@@ -42,4 +43,4 @@ const AppMain: React.FC<AppMainProps> = ({ children }) => {
   );
 };
 
-export default AppMain;
+export default DashboardLayout;
