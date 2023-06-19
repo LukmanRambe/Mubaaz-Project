@@ -55,18 +55,18 @@ const RunningTextDetailModal = ({
                 <>
                   <div className="w-full">
                     <label className="block mb-2 text-sm font-semibold text-gray-900">
-                      Text
-                    </label>
-
-                    <p>{runningText?.text}</p>
-                  </div>
-
-                  <div className="w-full">
-                    <label className="block mb-2 text-sm font-semibold text-gray-900">
                       Urutan
                     </label>
 
                     <p>{runningText?.urutan}</p>
+                  </div>
+
+                  <div className="w-full">
+                    <label className="block mb-2 text-sm font-semibold text-gray-900">
+                      Text
+                    </label>
+
+                    <p>{runningText?.text}</p>
                   </div>
                 </>
               )}
