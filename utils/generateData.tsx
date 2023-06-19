@@ -88,7 +88,7 @@ export const generateTableHeadsKhutbah = (): string[] => {
 };
 
 export const generateTableHeadsPoster = (): string[] => {
-  const tableHeadsPoster = ['No.', 'Gambar', 'Jenis', 'Urutan', 'Aksi'];
+  const tableHeadsPoster = ['No.', 'Poster', 'Urutan', 'Aksi'];
 
   return tableHeadsPoster;
 };
