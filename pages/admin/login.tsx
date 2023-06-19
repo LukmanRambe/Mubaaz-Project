@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import Head from 'next/head';
@@ -17,27 +17,22 @@ const LoginPage: NextPageWithLayout = () => {
   const {
     register,
     handleSubmit,
-    setValue,
     watch,
     formState: { errors, isLoading },
   } = useForm<LoginFormValues>({
     resolver: yupResolver(loginSchema),
   });
 
-  const handleLogin = () => {
+  const handleLogin = (data: LoginFormValues) => {
+    setLoginFormValues({
+      username: data?.username,
+      password: data?.password,
+    });
+
     if (watch('username') && watch('password')) {
       login();
     }
   };
-
-  useEffect(() => {
-    setValue('username', 'superAdmin');
-    setValue('password', 'superAdmin123');
-    setLoginFormValues({
-      username: watch('username'),
-      password: watch('password'),
-    });
-  }, []);
 
   return (
     <section className="flex flex-col w-full h-full">
