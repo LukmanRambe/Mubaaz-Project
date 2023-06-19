@@ -122,9 +122,9 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({
         <>
           <div
             tabIndex={-1}
-            className={`fixed flex justify-center items-center z-50 md:min-h-screen min-w-screen w-full inset-0 h-full bg-black/50`}
+            className={`fixed inset-0 z-50 flex items-center justify-center w-full h-full md:min-h-screen min-w-screen bg-black/50`}
           >
-            <div className="relative flex flex-col max-w-md gap-5 px-3 py-5 mx-2 text-center bg-white rounded-lg md:w-full md:h-auto md:p-6">
+            <div className="w-[calc(100%-2rem)] sm:w-[28rem] overflow-hidden bg-white shadow-xl lg:w-[32rem] p-5 rounded-2xl text-center">
               <span className="flex justify-center">
                 <AiOutlineWarning className="md:w-24 md:h-24 w-[4.5rem] h-[4.5rem] px-4 md:px-5 text-red-600 bg-[#FEE2E2] rounded-full" />
               </span>
