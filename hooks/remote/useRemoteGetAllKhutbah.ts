@@ -17,7 +17,7 @@ const useRemoteGetAllKhutbah = (
 
   const newData = useMemo<AllKhutbahType | undefined>(() => {
     return {
-      data: data?.data.data,
+      data: data?.data.data.data,
       pagination: data?.data.meta,
     };
   }, [data?.data.data]);
