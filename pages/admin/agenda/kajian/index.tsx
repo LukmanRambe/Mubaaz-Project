@@ -51,8 +51,8 @@ const Kajian: NextPageWithLayout = () => {
     [allKajianData?.pagination?.perPage]
   );
   const totalItems = useMemo(
-    () => allKajianData?.data?.length ?? allKajianData?.pagination?.total ?? 0,
-    [allKajianData?.data?.length, allKajianData?.pagination?.total]
+    () => allKajianData?.pagination?.total ?? 0,
+    [allKajianData?.pagination?.total]
   );
   const [startItem, setStartItem] = useState<number>(1);
   const [endItem, setEndItem] = useState<number>(dataLimit);

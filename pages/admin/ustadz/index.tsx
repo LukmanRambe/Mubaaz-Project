@@ -40,8 +40,8 @@ const Ustadz: NextPageWithLayout = () => {
     [allUstadzData?.pagination?.perPage]
   );
   const totalItems = useMemo(
-    () => allUstadzData?.data?.length || 0,
-    [allUstadzData?.data?.length]
+    () => allUstadzData?.pagination?.total ?? 0,
+    [allUstadzData?.pagination?.total]
   );
   const [startItem, setStartItem] = useState<number>(1);
   const [endItem, setEndItem] = useState<number>(dataLimit);
