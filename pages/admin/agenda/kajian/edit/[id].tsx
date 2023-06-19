@@ -329,7 +329,9 @@ const EditKajian: NextPageWithLayout<EditKajianProps> = ({ idKajian }) => {
                               reader.readAsDataURL(value.target.files[0]);
                             } else {
                               field.onChange(false);
-                              setPreviewImage(null);
+                              setPreviewImage(
+                                `https://api.mubaaz.id/${kajianData?.poster}`
+                              );
                             }
                           }}
                         />

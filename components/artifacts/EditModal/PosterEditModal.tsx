@@ -240,7 +240,9 @@ const PosterEditModal = ({
                                   reader.readAsDataURL(value.target.files[0]);
                                 } else {
                                   field.onChange(false);
-                                  setPreviewImage(poster?.gambar);
+                                  setPreviewImage(
+                                    `https://api.mubaaz.id/${poster?.gambar}`
+                                  );
                                 }
                               }}
                             />
