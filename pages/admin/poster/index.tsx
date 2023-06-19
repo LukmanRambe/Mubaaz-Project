@@ -146,7 +146,7 @@ const Poster: NextPageWithLayout = () => {
                 </thead>
                 <tbody>
                   {isFetching || isLoading ? (
-                    <tr className="bg-white border-b border-[#9FA284] border-opacity-20 hover:bg-gray-50">
+                    <tr className="bg-white border-opacity-20 hover:bg-gray-50">
                       <td colSpan={tableHeads.length} className="px-5 p-7">
                         <PageLoading />
                       </td>
@@ -154,7 +154,7 @@ const Poster: NextPageWithLayout = () => {
                   ) : (
                     <>
                       {allPosterData?.data?.length === 0 ? (
-                        <tr className="bg-white border-b border-[#9FA284] border-opacity-20 font-medium text-primary-160">
+                        <tr className="font-medium bg-white border-opacity-20 text-primary-160">
                           <td
                             colSpan={tableHeads.length}
                             className="text-center p-7"
@@ -166,7 +166,7 @@ const Poster: NextPageWithLayout = () => {
                         allPosterData?.data?.map((poster, index) => (
                           <tr
                             key={poster.id}
-                            className="bg-white border-b border-[#9FA284] border-opacity-20 hover:bg-gray-50"
+                            className="bg-white border-opacity-20 hover:bg-gray-50"
                           >
                             <td className="px-5 p-7">{index + 1}</td>
                             <td className="px-5 font-medium text-primary-160 p-7">
