@@ -203,7 +203,7 @@ const Navbar: React.FC = () => {
 
       <nav className="flex items-center justify-between gap-4 px-6 py-4 lg:px-6 sm:px-6 md:px-6 bg-red">
         <div className="items-center justify-between hidden w-full lg:flex">
-          <Link href={'/'} passHref>
+          <Link href={'/admin/ustadz'} passHref>
             <a>
               <div className="relative cursor-pointer w-36 aspect-[4/1.14]">
                 <Image
@@ -262,7 +262,7 @@ const Navbar: React.FC = () => {
                 <div>
                   <div className="flex items-center justify-start gap-3 active:text-dark-primary-color hover:text-dark-primary-color rounded-lg px-4 py-3 transition duration-75 ease-in-out cursor-pointer text-[#84828A]">
                     <button
-                      // onClick={() => logout()}
+                      onClick={() => logout()}
                       className="flex items-center gap-3 text-sm"
                     >
                       <span>
