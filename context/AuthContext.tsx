@@ -20,6 +20,7 @@ export const AuthContext = createContext<AuthContextData>({
   isAuthenticated: false,
   setIsAuthenticated: () => false,
   setLoginFormValues: () => {},
+  loginFormValues: { username: '', password: '' },
   login: () => {},
   logout: () => null,
   errorMessage: '',
@@ -85,6 +86,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     },
     {
       onSuccess: async (res) => {
+        setIsLoading(true);
         if (res.status === 200) {
           setIsAuthenticated(false);
           Cookies.remove('xmt');
@@ -126,7 +128,8 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       },
       onError: async (error: AxiosError) => {
         if (error.response?.status === 401) {
-          setErrorMessage('Gagal refresh token');
+          Cookies.remove('xmt');
+          Cookies.remove('xmxt');
         } else {
           setErrorMessage(error.message);
         }
@@ -148,6 +151,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     },
     {
       onSuccess: async (res) => {
+        setIsLoading(true);
         if (res.status === 200) {
           setIsLoading(false);
           setIsAuthenticated(true);
@@ -176,12 +180,10 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   );
 
   const login = async () => {
-    setIsLoading(true);
     executeLogin.mutate();
   };
 
   const logout = async () => {
-    setIsLoading(true);
     executeLogout.mutate();
   };
 
@@ -204,7 +206,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   useEffect(() => {
     const token = Cookies.get('xmt');
 
-    if (!token && router.pathname !== '/admin/login') {
+    if (!token) {
       router.replace('/admin/login');
     } else if (token) {
       getUserData();
@@ -221,6 +223,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         isAuthenticated,
         setIsAuthenticated,
         setLoginFormValues,
+        loginFormValues,
         login,
         logout,
         errorMessage,
