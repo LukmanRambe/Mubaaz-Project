@@ -6,6 +6,7 @@ import { RiSlideshow3Fill } from 'react-icons/ri';
 
 import type { Option } from '../ts/types/main/Option';
 import type { SidebarMenus } from '../ts/types/main/Sidebar';
+import { JadwalShalatType } from '../ts/types/slideshow/JadwalShalat';
 
 export const generateSidebarMenus = () => {
   const classNames = 'flex-shrink-0 w-6 h-6 transition duration-75';
@@ -46,7 +47,7 @@ export const generateSidebarMenus = () => {
       role: ['Super Admin', 'Admin'],
     },
     {
-      menuName: 'Slideshow',
+      menuName: 'Slideshow Control',
       href: '/admin/slideshow-control',
       icon: <RiSlideshow3Fill className={classNames} />,
       role: ['Admin'],
@@ -54,6 +55,39 @@ export const generateSidebarMenus = () => {
   ];
 
   return sidebarMenus;
+};
+
+export const generateJadwalShalat = (
+  jadwalShalatData: JadwalShalatType | undefined
+) => {
+  const jadwalShalat = [
+    {
+      name: 'Shubuh',
+      jam: jadwalShalatData?.data?.jadwal.subuh ?? '00:00',
+    },
+    {
+      name: 'Terbit',
+      jam: jadwalShalatData?.data?.jadwal.terbit ?? '00:00',
+    },
+    {
+      name: 'Dzuhur',
+      jam: jadwalShalatData?.data?.jadwal.dzuhur ?? '00:00',
+    },
+    {
+      name: 'Ashar',
+      jam: jadwalShalatData?.data?.jadwal.ashar ?? '00:00',
+    },
+    {
+      name: 'Maghrib',
+      jam: jadwalShalatData?.data?.jadwal.maghrib ?? '00:00',
+    },
+    {
+      name: 'Isya',
+      jam: jadwalShalatData?.data?.jadwal.isya ?? '00:00',
+    },
+  ];
+
+  return jadwalShalat;
 };
 
 export const generateTableHeadsUstadz = (): string[] => {
