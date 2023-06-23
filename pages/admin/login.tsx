@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import Head from 'next/head';
@@ -12,7 +12,8 @@ import { LoginFormValues } from '../../ts/types/schema/AuthenticationSchema';
 import { loginSchema } from '../../utils/schema/authenticationSchema';
 
 const LoginPage: NextPageWithLayout = () => {
-  const { login, setLoginFormValues, errorMessage } = useContext(AuthContext);
+  const { login, setLoginFormValues, loginFormValues, errorMessage } =
+    useContext(AuthContext);
 
   const {
     register,
@@ -23,16 +24,18 @@ const LoginPage: NextPageWithLayout = () => {
     resolver: yupResolver(loginSchema),
   });
 
-  const handleLogin = (data: LoginFormValues) => {
-    setLoginFormValues({
-      username: data?.username,
-      password: data?.password,
-    });
-
-    if (watch('username') && watch('password')) {
+  const handleLogin = () => {
+    if (loginFormValues.username !== '' || loginFormValues.password !== '') {
       login();
     }
   };
+
+  useEffect(() => {
+    setLoginFormValues({
+      username: watch('username'),
+      password: watch('password'),
+    });
+  }, [watch('username'), watch('password')]);
 
   return (
     <section className="flex flex-col w-full h-full">
@@ -68,12 +71,7 @@ const LoginPage: NextPageWithLayout = () => {
               type="text"
               placeholder="Masukkan username anda"
               className="w-full rounded-md border-0 py-2.5 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-primary-100 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-140 sm:text-sm sm:leading-6"
-              {...register('username', {
-                required: {
-                  value: true,
-                  message: 'Mohon isi Username',
-                },
-              })}
+              {...register('username')}
             />
 
             {errors.username && (
@@ -95,12 +93,7 @@ const LoginPage: NextPageWithLayout = () => {
               type="password"
               placeholder="Masukkan password anda"
               className="w-full rounded-md border-0 py-2.5 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-primary-100 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-140 sm:text-sm sm:leading-6"
-              {...register('password', {
-                required: {
-                  value: true,
-                  message: 'Mohon isi Password',
-                },
-              })}
+              {...register('password')}
             />
 
             {errors.password && (
