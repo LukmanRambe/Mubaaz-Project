@@ -6,7 +6,7 @@ import { useFetch } from '../useFetch';
 const useRemoteGetKajian = (id: KajianType['id']) => {
   const url = `/api/kajians/${id}`;
 
-  const { data, error, isFetching, refetch } = useFetch('getKajian', url);
+  const { data, error, isFetching, refetch } = useFetch(['getKajian', id], url);
 
   const newData = useMemo<KajianType>(() => data?.data.data, [data?.data]);
 

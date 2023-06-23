@@ -61,8 +61,9 @@ const KajianDetailModal = ({
 
                   <section className="w-full p-5 pt-3 rounded-t-full">
                     <div className="flex flex-col gap-0 mb-2">
-                      <p className="text-sm font-medium text-gray-400">
-                        {kajian.tema}
+                      <p className="text-sm font-medium text-gray-500">
+                        {kajian.nama_ustadz} -{' '}
+                        <span className="font-normal">{kajian.tema}</span>
                       </p>
 
                       <p className="w-full text-2xl font-bold capitalize text-primary-140">
@@ -70,21 +71,25 @@ const KajianDetailModal = ({
                       </p>
                     </div>
 
-                    <p className="w-full text-base font-semibold text-gray-900 capitalize">
-                      <span className="text-gray-400">Bersama :</span>{' '}
-                      {kajian.nama_ustadz}
-                    </p>
+                    <div className="flex items-center justify-between mt-10">
+                      <div className="flex flex-col items-start justify-start w-full text-gray-400">
+                        <p>Mulai : {kajian.waktu_awal} WIB</p>
+                        <p>Berakhir : {kajian.waktu_akhir} WIB</p>
+                      </div>
 
-                    <div className="flex justify-between w-full mt-16">
-                      <p className="w-full font-medium text-gray-400 capitalize text-md">
-                        {kajian.lokasi}
-                      </p>
+                      <div className="flex flex-col items-end justify-end w-full text-gray-400">
+                        <p className="w-full font-medium capitalize text-md text-end">
+                          {kajian.lokasi}
+                        </p>
 
-                      <p className="w-full font-medium text-gray-400 text-md text-end">
-                        {kajian?.tanggal
-                          ? moment(kajian?.tanggal).format('dddd, D MMMM YYYY')
-                          : '-'}
-                      </p>
+                        <p className="w-full font-medium text-md text-end">
+                          {kajian?.tanggal
+                            ? moment(kajian?.tanggal).format(
+                                'dddd, D MMMM YYYY'
+                              )
+                            : '-'}
+                        </p>
+                      </div>
                     </div>
                   </section>
                 </>

@@ -115,6 +115,8 @@ const EditKajian: NextPageWithLayout<EditKajianProps> = ({ idKajian }) => {
     formData.append('tema', data.tema);
     formData.append('judul', data.judul);
     formData.append('tanggal', moment(data.tanggal).format('YYYY-MM-DD'));
+    formData.append('waktu_awal', `${data.waktu_awal}`);
+    formData.append('waktu_akhir', `${data.waktu_akhir}`);
     formData.append('lokasi', data.lokasi);
     if (data.poster) {
       formData.append('poster', data.poster);
@@ -141,6 +143,9 @@ const EditKajian: NextPageWithLayout<EditKajianProps> = ({ idKajian }) => {
       if (kajianData.tanggal) {
         setValue('tanggal', new Date(kajianData.tanggal));
       }
+
+      setValue('waktu_awal', kajianData.waktu_awal);
+      setValue('waktu_akhir', kajianData.waktu_akhir);
       setValue('lokasi', kajianData.lokasi);
 
       if (kajianData.poster) {
@@ -244,26 +249,60 @@ const EditKajian: NextPageWithLayout<EditKajianProps> = ({ idKajian }) => {
                 )}
               </div>
 
-              <div className="flex items-center gap-3 justfiy-between">
-                <div className="w-full mb-5">
+              <div className="flex flex-col w-full gap-3 mb-5 md:flex-row">
+                <div className="w-full">
                   <label className="block mb-2 text-sm font-semibold text-gray-900">
-                    Lokasi
+                    Waktu Awal
                   </label>
 
-                  <input
-                    {...register('lokasi')}
-                    className="w-full rounded-md border-0 py-2.5 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-primary-100 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-140 sm:text-sm sm:leading-6"
-                    placeholder="Input Lokasi"
+                  <Controller
+                    name="waktu_awal"
+                    control={control}
+                    render={({ field }) => (
+                      <input
+                        {...register('waktu_awal')}
+                        type="time"
+                        onChange={(event) => field.onChange(event.target.value)}
+                        className="w-full p-[.7rem] text-sm text-gray-900 bg-white border-gray-300 rounded shadow-sm ring-1 focus:ring-2 ring-primary-100 focus:ring-primary-140 focus:border-primary-140 hover:cursor-pointer"
+                        autoComplete="off"
+                      />
+                    )}
                   />
 
-                  {errors.lokasi && (
+                  {errors.waktu_awal && (
                     <p className="mt-1 text-xs text-red-600">
-                      {errors.lokasi.message}
+                      {errors.waktu_awal.message}
                     </p>
                   )}
                 </div>
 
-                <div className="w-full mb-5">
+                <div className="w-full">
+                  <label className="block mb-2 text-sm font-semibold text-gray-900">
+                    Waktu Akhir
+                  </label>
+
+                  <Controller
+                    name="waktu_akhir"
+                    control={control}
+                    render={({ field }) => (
+                      <input
+                        {...register('waktu_akhir')}
+                        type="time"
+                        onChange={(event) => field.onChange(event.target.value)}
+                        className="w-full p-[.7rem] text-sm text-gray-900 bg-white border-gray-300 rounded shadow-sm ring-1 focus:ring-2 ring-primary-100 focus:ring-primary-140 focus:border-primary-140 hover:cursor-pointer"
+                        autoComplete="off"
+                      />
+                    )}
+                  />
+
+                  {errors.waktu_akhir && (
+                    <p className="mt-1 text-xs text-red-600">
+                      {errors.waktu_akhir.message}
+                    </p>
+                  )}
+                </div>
+
+                <div className="w-full">
                   <label className="block mb-2 text-sm font-semibold text-gray-900">
                     Tanggal
                   </label>
@@ -288,6 +327,24 @@ const EditKajian: NextPageWithLayout<EditKajianProps> = ({ idKajian }) => {
                   {errors.tanggal && (
                     <p className="mt-1 text-xs text-red-600">
                       {errors.tanggal.message}
+                    </p>
+                  )}
+                </div>
+
+                <div className="w-full">
+                  <label className="block mb-2 text-sm font-semibold text-gray-900">
+                    Lokasi
+                  </label>
+
+                  <input
+                    {...register('lokasi')}
+                    className="w-full rounded-md border-0 py-2.5 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-primary-100 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-140 sm:text-sm sm:leading-6"
+                    placeholder="Input Lokasi"
+                  />
+
+                  {errors.lokasi && (
+                    <p className="mt-1 text-xs text-red-600">
+                      {errors.lokasi.message}
                     </p>
                   )}
                 </div>

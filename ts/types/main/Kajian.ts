@@ -8,6 +8,8 @@ export type AllKajianType = {
     tanggal: string;
     lokasi: string;
     poster: string;
+    waktu_awal: string;
+    waktu_akhir: string;
     nama_file_poster: string;
   }[];
   pagination: {
@@ -27,5 +29,12 @@ export type KajianType = {
   tanggal: string;
   lokasi: string;
   poster: string;
+  waktu_awal: string;
+  waktu_akhir: string;
   nama_file_poster: string;
+};
+
+export type AllKajianDropdownType = {
+  id: string;
+  judul: string;
 };

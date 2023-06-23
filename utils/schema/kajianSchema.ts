@@ -15,6 +15,8 @@ export const createKajianSchema: Yup.SchemaOf<CreateKajianFormValues> =
     tema: Yup.string().required('Mohon isi Tema Kajian'),
     judul: Yup.string().required('Mohon isi Judul Kajian'),
     tanggal: Yup.date().required('Mohon isi Tanggal'),
+    waktu_awal: Yup.string().required('Mohon isi Waktu Awal'),
+    waktu_akhir: Yup.string().required('Mohon isi Waktu Akhir'),
     lokasi: Yup.string().required('Mohon isi Lokasi'),
     poster: Yup.mixed()
       .test('fileRequired', 'Mohon upload poster', (value) => {
@@ -62,6 +64,8 @@ export const editKajianSchema: Yup.SchemaOf<EditKajianFormValues> =
     tema: Yup.string().required('Mohon isi Tema Kajian'),
     judul: Yup.string().required('Mohon isi Judul Kajian'),
     tanggal: Yup.date().required('Mohon isi Tanggal'),
+    waktu_awal: Yup.string().required('Mohon isi Waktu Awal'),
+    waktu_akhir: Yup.string().required('Mohon isi Waktu Akhir'),
     lokasi: Yup.string().required('Mohon isi Lokasi'),
     poster: Yup.mixed()
       .notRequired()
