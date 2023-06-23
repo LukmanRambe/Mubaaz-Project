@@ -13,6 +13,7 @@ export type AuthContextData = {
   isAuthenticated: boolean;
   setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
   setLoginFormValues: ({ username, password }: LoginFormValues) => void;
+  loginFormValues: LoginFormValues;
   login: () => void;
   logout: () => void;
   errorMessage: string;
