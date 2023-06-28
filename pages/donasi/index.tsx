@@ -35,25 +35,29 @@ const Donasi: NextPageWithLayout = () => {
       <article className="w-full h-full mt-5">
         <h1 className="mb-10 text-2xl font-bold text-primary-140">Donasi</h1>
 
-        <section className="flex flex-col justify-start gap-10">
+        <section className="flex flex-col flex-wrap justify-between gap-10 md:flex-row">
           <section>
             <h2 className="mb-5 text-lg font-semibold">
               Bank Muamalat - Infaq Masjid
             </h2>
 
-            <picture className="relative block h-12 w-44 md:h-20 md:w-80">
-              <Image
-                src="/assets/images/bank-muamalat.png"
-                alt="Bank Muamalat"
-                layout="fill"
-                className="object-contain"
-              />
-            </picture>
+            <section className="overflow-hidden bg-white rounded-lg drop-shadow-xl w-fit">
+              <section className="w-full p-5 py-10 border-b border-primary-180">
+                <picture className="relative block h-12 w-44 md:h-20 md:w-80">
+                  <Image
+                    src="/assets/images/bank-muamalat.png"
+                    alt="Bank Muamalat"
+                    layout="fill"
+                    className="object-contain"
+                  />
+                </picture>
+              </section>
 
-            <section className="mt-5">
-              <p>Nomor Rekening : 23 0001 9696</p>
-              <p>A/N : MASJID UMAR BIN ABDUL AZIZ</p>
-              <p>Kode Bank : 147</p>
+              <section className="px-4 py-3">
+                <p>Nomor Rekening : 23 0001 9696</p>
+                <p>A/N : MASJID UMAR BIN ABDUL AZIZ</p>
+                <p>Kode Bank : 147</p>
+              </section>
             </section>
           </section>
 
@@ -62,19 +66,23 @@ const Donasi: NextPageWithLayout = () => {
               Bank BSI - Operasional Dakwah
             </h2>
 
-            <picture className="relative block h-12 w-44 md:h-20 md:w-80">
-              <Image
-                src="/assets/images/bank-bsi.svg"
-                alt="Bank Muamalat"
-                layout="fill"
-                className="object-contain"
-              />
-            </picture>
+            <section className="overflow-hidden bg-white rounded-lg drop-shadow-xl w-fit">
+              <section className="w-full p-5 py-10 border-b border-primary-180">
+                <picture className="relative block h-12 w-44 md:h-20 md:w-80">
+                  <Image
+                    src="/assets/images/bank-bsi.svg"
+                    alt="Bank Muamalat"
+                    layout="fill"
+                    className="object-contain"
+                  />
+                </picture>
+              </section>
 
-            <section className="mt-5">
-              <p>Nomor Rekening : 7125-418-451</p>
-              <p>A/N : Yayasan Darussunnah Tembung</p>
-              <p>Kode Bank : 451</p>
+              <section className="px-4 py-3">
+                <p>Nomor Rekening : 7125-418-451</p>
+                <p>A/N : Yayasan Darussunnah Tembung</p>
+                <p>Kode Bank : 451</p>
+              </section>
             </section>
           </section>
 
@@ -83,17 +91,21 @@ const Donasi: NextPageWithLayout = () => {
               Listrik Pintar - Token Listrik Mubaaz
             </h2>
 
-            <picture className="relative block h-20 w-36 md:w-56 md:h-28">
-              <Image
-                src="/assets/images/listrik-pintar.webp"
-                alt="Bank Muamalat"
-                layout="fill"
-                className="object-contain"
-              />
-            </picture>
+            <section className="overflow-hidden bg-white rounded-lg drop-shadow-xl w-fit">
+              <section className="w-full p-[4.25rem] border-b py-[1.53rem] border-primary-180">
+                <picture className="relative block h-20 w-36 md:w-56 md:h-28">
+                  <Image
+                    src="/assets/images/listrik-pintar.webp"
+                    alt="Bank Muamalat"
+                    layout="fill"
+                    className="object-contain"
+                  />
+                </picture>
+              </section>
 
-            <section className="mt-5">
-              <p>Nomor Meter : 32 1738 5938 3</p>
+              <section className="px-4 py-3 min-h-[96px]">
+                <p>Nomor Meter : 32 1738 5938 3</p>
+              </section>
             </section>
           </section>
         </section>
