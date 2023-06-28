@@ -41,7 +41,7 @@ const Donasi: NextPageWithLayout = () => {
               Bank Muamalat - Infaq Masjid
             </h2>
 
-            <picture className="relative block h-20 w-80">
+            <picture className="relative block h-12 w-44 md:h-20 md:w-80">
               <Image
                 src="/assets/images/bank-muamalat.png"
                 alt="Bank Muamalat"
@@ -62,7 +62,7 @@ const Donasi: NextPageWithLayout = () => {
               Bank BSI - Operasional Dakwah
             </h2>
 
-            <picture className="relative block h-20 w-80">
+            <picture className="relative block h-12 w-44 md:h-20 md:w-80">
               <Image
                 src="/assets/images/bank-bsi.svg"
                 alt="Bank Muamalat"
@@ -83,7 +83,7 @@ const Donasi: NextPageWithLayout = () => {
               Listrik Pintar - Token Listrik Mubaaz
             </h2>
 
-            <picture className="relative block w-56 h-28">
+            <picture className="relative block h-20 w-36 md:w-56 md:h-28">
               <Image
                 src="/assets/images/listrik-pintar.webp"
                 alt="Bank Muamalat"
