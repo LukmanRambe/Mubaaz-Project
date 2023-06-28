@@ -78,6 +78,10 @@ export const generateNavbarMenus = () => {
         },
       ],
     },
+    {
+      menuName: 'Donasi',
+      href: '/donasi',
+    },
   ];
 
   return navbarMenus;
