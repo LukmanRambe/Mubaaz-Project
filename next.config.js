@@ -3,7 +3,16 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ['tailwindui.com'],
+    domains: ['tailwindui.com', 'api.mubaaz.id', 'images.unsplash.com'],
+  },
+  async redirects() {
+    return [
+      {
+        source: '/admin',
+        destination: '/admin/login',
+        permanent: false,
+      },
+    ];
   },
 };
 
