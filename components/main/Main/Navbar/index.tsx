@@ -34,8 +34,8 @@ const Navbar = () => {
           {isVisible && (
             <article className="items-center justify-between hidden w-full p-5 lg:px-12 xl:px-24 2xl:px-28 sm:px-6 bg-neutral-50 md:flex">
               <section className="w-fit">
-                <h1 className="text-3xl font-semibold text-primary-180 w-fit">
-                  Logo Mubaaz
+                <h1 className="text-3xl font-bold tracking-wider uppercase text-primary-180 w-fit">
+                  Mubaaz
                 </h1>
               </section>
 
@@ -96,9 +96,7 @@ const Navbar = () => {
       >
         {router.pathname === '/' && (
           <section className="hidden w-full md:block">
-            <h1 className="text-3xl font-semibold text-white w-fit">
-              Logo Mubaaz
-            </h1>
+            <h1 className="text-3xl font-semibold text-white w-fit">Mubaaz</h1>
           </section>
         )}
 
@@ -131,19 +129,19 @@ const Navbar = () => {
                       leaveFrom="opacity-100"
                       leaveTo="opacity-0"
                     >
-                      <Popover.Panel className="absolute flex flex-col justify-center mt-1 bg-white divide-y rounded-md shadow-xl w-fit">
+                      <Popover.Panel className="absolute flex flex-col justify-center mt-1 overflow-hidden bg-white divide-y rounded-md shadow-xl w-fit">
                         {menu.subMenu?.map((subMenu) => (
                           <div
                             key={subMenu.name}
-                            className="p-3"
+                            className="transition duration-75 p-3 ease-in-out cursor-pointer active:text-primary-160 hover:text-primary-160 active:bg-primary-60 min-w-fit focus:outline-none hover:bg-primary-40 text-[#84828A]"
                             onClick={close}
                           >
                             <Link href={subMenu.href} passHref>
                               <a
-                                className={`w-full active:text-primary-160 hover:text-primary-160 min-h-[44px] transition duration-75 ease-in-out cursor-pointer text-sm focus:outline-none ${
+                                className={`flex items-center justify-start gap-3 ${
                                   `${subMenu.href}` === router.pathname
                                     ? 'text-primary-160 focus-visible:text-primary-160'
-                                    : 'text-[#84828A] focus-visible:text-primary-160'
+                                    : 'focus-visible:text-primary-160'
                                 }`}
                               >
                                 {subMenu.name}

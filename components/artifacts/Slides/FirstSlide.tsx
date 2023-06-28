@@ -40,9 +40,6 @@ const FirstSlide = ({
     >
       <section className="flex flex-col w-full h-full grid-rows-3 row-span-1 row-start-1 bg-[#1c6571]">
         <section className={`flex w-full gap-4 ${isTVScreen ? 'p-5' : 'p-3'}`}>
-          {/* <p className={`${isTVScreen ? 'text-4xl' : 'text-xl'}`}>
-            Logo Masjid
-          </p> */}
           <article>
             <h1
               className={`font-bold text-white ${

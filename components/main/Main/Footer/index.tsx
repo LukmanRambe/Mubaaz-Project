@@ -10,7 +10,9 @@ const Footer = () => {
     <footer className="flex flex-col items-start justify-between w-full p-10 px-3 sm:px-6 lg:px-12 xl:px-24 2xl:px-28 pb-7 bg-primary-180">
       <section className="flex flex-col items-start justify-between w-full gap-5 md:flex-wrap lg:flex-nowrap md:flex-row">
         <section className="w-full text-white">
-          <h3 className="text-4xl font-bold">Logo</h3>
+          <h3 className="text-4xl font-bold tracking-wider uppercase">
+            Mubaaz
+          </h3>
         </section>
 
         <section className="w-full">

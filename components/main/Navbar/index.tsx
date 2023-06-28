@@ -57,17 +57,12 @@ const Navbar: React.FC = () => {
               leaveTo="-translate-x-full"
             >
               <Dialog.Panel className="relative flex flex-col w-[80%] h-full max-w-xs py-2 pb-8 mr-auto overflow-y-auto scrollbar-hide bg-white shadow-xl">
-                <div className="flex items-start justify-between px-6 pt-3 ">
-                  <div className="flex flex-col gap-2">
+                <div className="flex items-start justify-between w-full px-6 pt-3">
+                  <div className="flex flex-col w-full gap-2">
                     <article className="flex items-start justify-between">
-                      <figure className="relative w-16 h-16">
-                        <Image
-                          src="/assets/profile-pic.webp"
-                          layout="fill"
-                          alt="Profile Picture"
-                          className="rounded-full"
-                        />
-                      </figure>
+                      <h1 className="text-3xl font-bold tracking-wider uppercase text-primary-180 w-fit">
+                        Mubaaz
+                      </h1>
 
                       <button
                         type="button"
@@ -81,22 +76,24 @@ const Navbar: React.FC = () => {
                       </button>
                     </article>
 
-                    <article className="flex items-center gap-2">
+                    <article className="flex items-center w-full gap-1 mt-5">
                       <h1 className="text-lg font-medium tracking-wide text-[#2C2C2C] sm:text-2xl capitalize">
                         {userData?.username}
                       </h1>
 
-                      <div
+                      <span>-</span>
+
+                      <p
                         className={`w-fit ${
                           userData?.role === 'super-admin' &&
                           'bg-blue-100 text-blue-600 text-xs font-medium  px-2 py-1 rounded-full'
                         } ${
-                          userData?.role === 'admin' &&
+                          userData?.role === 'Admin' &&
                           'bg-yellow-100 text-yellow-600 text-xs font-medium  px-2 py-1 rounded-full'
                         }`}
                       >
                         {userData.role}
-                      </div>
+                      </p>
                     </article>
                   </div>
                 </div>
@@ -182,7 +179,7 @@ const Navbar: React.FC = () => {
                       ))}
                     </div>
 
-                    <li className="flex items-center justify-start gap-3 active:text-dark-primary-color hover:text-dark-primary-color hover:bg-blue-100 active:bg-blue-200 ml-5 pl-5 rounded-lg py-4 transition duration-75 ease-in-out cursor-pointer text-[#84828A]">
+                    <li className="flex items-center justify-start gap-3 px-4 py-3 transition duration-75 ease-in-out rounded-lg cursor-pointer active:text-primary-160 hover:text-primary-160 active:bg-primary-60 min-w-fit focus:outline-none hover:bg-primary-40 text-[#84828A]">
                       <button
                         onClick={() => logout()}
                         className="flex items-center gap-3"
@@ -205,13 +202,9 @@ const Navbar: React.FC = () => {
         <div className="items-center justify-between hidden w-full lg:flex">
           <Link href={'/admin/ustadz'} passHref>
             <a>
-              <div className="relative cursor-pointer w-36 aspect-[4/1.14]">
-                <Image
-                  src="/assets/profile-pic.webp"
-                  layout="fill"
-                  alt="Profile Picture"
-                />
-              </div>
+              <h1 className="text-3xl font-bold tracking-wider uppercase text-primary-180 w-fit">
+                Mubaaz
+              </h1>
             </a>
           </Link>
 
@@ -230,7 +223,7 @@ const Navbar: React.FC = () => {
                 <div>
                   <div className="flex flex-col items-start w-full gap-2 px-4 py-3 text-gray-900">
                     <div className="flex items-center gap-3">
-                      <div className="relative w-8 h-8 rounded-full">
+                      <div className="relative w-10 h-10 rounded-full">
                         <Image
                           src="/assets/profile-pic.webp"
                           layout="fill"
@@ -240,27 +233,28 @@ const Navbar: React.FC = () => {
                       </div>
 
                       <div className="flex flex-col items-start gap-1">
-                        <div className="text-sm font-semibold capitalize">
+                        <p className="text-sm font-semibold capitalize">
                           {userData.username}
-                        </div>
-                        <div
+                        </p>
+
+                        <p
                           className={` ${
                             userData?.role === 'super-admin' &&
                             'bg-blue-100 text-blue-600 text-xs font-medium  px-2 py-1 rounded-full'
                           } ${
-                            userData?.role === 'admin-do' &&
+                            userData?.role === 'Admin' &&
                             'bg-yellow-100 text-yellow-600 text-xs font-medium  px-2 py-1 rounded-full'
                           }`}
                         >
                           {userData.role}
-                        </div>
+                        </p>
                       </div>
                     </div>
                   </div>
                 </div>
 
                 <div>
-                  <div className="flex items-center justify-start gap-3 active:text-dark-primary-color hover:text-dark-primary-color rounded-lg px-4 py-3 transition duration-75 ease-in-out cursor-pointer text-[#84828A]">
+                  <div className="flex items-center justify-start gap-3 px-4 py-3 transition duration-75 ease-in-out rounded-lg cursor-pointer active:text-primary-160 hover:text-primary-160 active:bg-primary-60 min-w-fit focus:outline-none hover:bg-primary-40 text-[#84828A]">
                     <button
                       onClick={() => logout()}
                       className="flex items-center gap-3 text-sm"
@@ -290,16 +284,14 @@ const Navbar: React.FC = () => {
           </button>
 
           <div className="flex justify-end w-full">
-            <Link href="/">
-              <div className="relative w-24 aspect-[4/1.14] rounded-full cursor-pointer">
-                <Image
-                  src="/assets/tnt-logo.png"
-                  color="#4F46E5"
-                  layout="fill"
-                  alt="Profile Picture"
-                />
-              </div>
-            </Link>
+            <picture className="relative rounded-full w-9 h-9">
+              <Image
+                src="/assets/profile-pic.webp"
+                layout="fill"
+                alt="Profile Picture"
+                className="rounded-full"
+              />
+            </picture>
           </div>
         </div>
       </nav>
