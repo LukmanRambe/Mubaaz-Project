@@ -2,6 +2,8 @@ import moment from 'moment';
 import Image from 'next/image';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { CgClose } from 'react-icons/cg';
+import { FaCalendarAlt } from 'react-icons/fa';
+import { MdLocationOn } from 'react-icons/md';
 
 import { KajianType } from '../../../ts/types/main/Kajian';
 
@@ -51,7 +53,7 @@ const KajianDetailModal = ({
                 </div>
               ) : (
                 <>
-                  <picture className="relative object-contain w-full aspect-[16/9] border-2 border-x-0 border-primary-160">
+                  <picture className="relative block object-cover w-full border-b-2 aspect-video border-primary-160">
                     <Image
                       src={`${process.env.NEXT_PUBLIC_API_URL}/${kajian.poster}`}
                       alt={kajian.nama_file_poster}
@@ -59,39 +61,45 @@ const KajianDetailModal = ({
                     />
                   </picture>
 
-                  <section className="w-full p-5 pt-3 rounded-t-full">
-                    <div className="flex flex-col gap-0 mb-2">
-                      <p className="text-sm font-medium text-gray-500">
-                        {kajian.nama_ustadz} -{' '}
-                        <span className="font-normal">{kajian.tema}</span>
-                      </p>
+                  <article className="flex flex-col p-4">
+                    <p className="text-sm font-medium text-gray-500">
+                      {kajian.nama_ustadz} -{' '}
+                      <span className="font-normal">{kajian.tema}</span>
+                    </p>
 
-                      <p className="w-full text-2xl font-bold capitalize text-primary-140">
-                        {kajian.judul}
-                      </p>
-                    </div>
+                    <h2 className="text-xl font-bold text-primary-160 min-h-[5rem]">
+                      {kajian.judul}
+                    </h2>
 
-                    <div className="flex items-center justify-between mt-10">
-                      <div className="flex flex-col items-start justify-start w-full text-gray-400">
+                    <article className="flex flex-col items-center justify-between gap-5 mt-10 lg:gap-0 lg:flex-row">
+                      <section className="flex flex-col w-full gap-1 text-gray-400">
                         <p>Mulai : {kajian.waktu_awal} WIB</p>
-                        <p>Berakhir : {kajian.waktu_akhir} WIB</p>
-                      </div>
+                        <p>Akhir : {kajian.waktu_akhir} WIB</p>
+                      </section>
 
-                      <div className="flex flex-col items-end justify-end w-full text-gray-400">
-                        <p className="w-full font-medium capitalize text-md text-end">
-                          {kajian.lokasi}
-                        </p>
+                      <section className="flex flex-col self-end w-full gap-1 text-gray-400 capitalize text-md text-end">
+                        <section className="flex items-center w-full gap-2">
+                          <span>
+                            <MdLocationOn className="w-4 h-4" />
+                          </span>
+                          <p className="w-fit">{kajian.lokasi}</p>
+                        </section>
 
-                        <p className="w-full font-medium text-md text-end">
-                          {kajian?.tanggal
-                            ? moment(kajian?.tanggal).format(
-                                'dddd, D MMMM YYYY'
-                              )
-                            : '-'}
-                        </p>
-                      </div>
-                    </div>
-                  </section>
+                        <section className="flex items-center w-full gap-2">
+                          <span>
+                            <FaCalendarAlt className="w-4 h-4" />
+                          </span>
+                          <p className="w-fit">
+                            {kajian?.tanggal
+                              ? moment(kajian?.tanggal).format(
+                                  'dddd, D MMMM YYYY'
+                                )
+                              : '-'}
+                          </p>
+                        </section>
+                      </section>
+                    </article>
+                  </article>
                 </>
               )}
             </article>
