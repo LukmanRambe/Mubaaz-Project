@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { AxiosError } from 'axios';
@@ -8,19 +8,21 @@ import { CgClose } from 'react-icons/cg';
 import { useMutation } from 'react-query';
 import Select, { SingleValue } from 'react-select';
 
+import useRemoteGetAllKajianDropdown from '../../../../hooks/remote/useRemoteGetAllKajianDropdown';
+import useRemoteGetKajian from '../../../../hooks/remote/useRemoteGetKajian';
 import { fetchAxios } from '../../../../libs/axios';
-import { selectNumberInputCustomStyles } from '../../../../libs/reactSelectStyles';
+import { selectStringInputCustomStyles } from '../../../../libs/reactSelectStyles';
 import type { Option } from '../../../../ts/types/main/Option';
 import { SlideshowType } from '../../../../ts/types/main/Slideshow';
-import { EditUrutanSlideshowFormValues } from '../../../../ts/types/schema/SlideshowSchema';
-import { editUrutanSlideshowSchema } from '../../../../utils/schema/slideshowSchema';
+import { EditPosterKajianSlideshowFormValues } from '../../../../ts/types/schema/SlideshowSchema';
+import { editPosterKajianSlideshowSchema } from '../../../../utils/schema/slideshowSchema';
 import ButtonLoading from '../../Loading/ButtonLoading';
 
-type SlideToModalProps = {
+type PosterKajianEditModalProps = {
   slideshow: SlideshowType | undefined;
   isFetching: boolean;
-  isUrutanEditModalShown: boolean;
-  setIsUrutanEditModalShown: (value: boolean) => void;
+  isPosterKajianEditModalShown: boolean;
+  setIsPosterKajianEditModalShown: (value: boolean) => void;
   setShowToast: (value: boolean) => void;
   toastMessage: string;
   setToastMessage: (value: string) => void;
@@ -28,27 +30,20 @@ type SlideToModalProps = {
   refetch: () => void;
 };
 
-const SlideToModal = ({
+const PosterKajianEditModal = ({
   slideshow,
   isFetching,
-  isUrutanEditModalShown,
-  setIsUrutanEditModalShown,
+  isPosterKajianEditModalShown,
+  setIsPosterKajianEditModalShown,
   setShowToast,
   toastMessage,
   setToastMessage,
   setToastType,
   refetch,
-}: SlideToModalProps) => {
-  const urutanOptions = [
-    {
-      label: '1',
-      value: 1,
-    },
-    {
-      label: '2',
-      value: 2,
-    },
-  ];
+}: PosterKajianEditModalProps) => {
+  const [idKajian, setIdKajian] = useState<string>('');
+  const { data: kajianData } = useRemoteGetKajian(idKajian);
+  const { data: dropdownKajian } = useRemoteGetAllKajianDropdown();
 
   const {
     register,
@@ -57,12 +52,12 @@ const SlideToModal = ({
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm<EditUrutanSlideshowFormValues>({
-    resolver: yupResolver(editUrutanSlideshowSchema),
+  } = useForm<EditPosterKajianSlideshowFormValues>({
+    resolver: yupResolver(editPosterKajianSlideshowSchema),
   });
 
   const handleCloseModal = () => {
-    setIsUrutanEditModalShown(false);
+    setIsPosterKajianEditModalShown(false);
   };
 
   const editSlideshow = useMutation(
@@ -71,8 +66,7 @@ const SlideToModal = ({
       return fetchAxios.put(
         `/api/slideshows/2ff26f65-c731-4777-b475-5f554fb689b5`,
         {
-          urutan: watch('urutan').value,
-          status: 'controlled',
+          kajian_id: watch('kajian_id').value,
         }
       );
     },
@@ -80,12 +74,12 @@ const SlideToModal = ({
       onSuccess: async (response) => {
         if (response.status === 200) {
           setShowToast(true);
-          setToastMessage('Urutan Slideshow berhasil diedit');
+          setToastMessage('Slide Poster Kajian berhasil diedit');
           setToastType('success');
 
           setTimeout(() => {
             setShowToast(false);
-            setIsUrutanEditModalShown(false);
+            setIsPosterKajianEditModalShown(false);
             setToastMessage('');
             refetch();
           }, 2000);
@@ -114,16 +108,20 @@ const SlideToModal = ({
 
   useEffect(() => {
     if (slideshow) {
-      setValue('urutan', {
-        label: slideshow.data[0]?.urutan?.toString(),
-        value: slideshow.data[0]?.urutan,
-      });
+      setIdKajian(slideshow.data[0]?.kajian_id);
+
+      if (kajianData) {
+        setValue('kajian_id', {
+          label: kajianData?.judul,
+          value: kajianData?.id,
+        });
+      }
     }
-  }, [slideshow]);
+  }, [slideshow, kajianData]);
 
   return (
     <>
-      {isUrutanEditModalShown && (
+      {isPosterKajianEditModalShown && (
         <>
           <div
             tabIndex={-1}
@@ -155,31 +153,31 @@ const SlideToModal = ({
                 >
                   <div className="w-full mb-5">
                     <label className="block mb-2 text-sm font-semibold text-gray-900">
-                      Nomor Slide
+                      Poster Kajian yang Ditampilkan
                     </label>
 
                     <Controller
-                      name="urutan"
+                      name="kajian_id"
                       control={control}
                       render={({ field }) => (
                         <Select
-                          options={urutanOptions}
-                          styles={selectNumberInputCustomStyles}
+                          options={dropdownKajian}
+                          styles={selectStringInputCustomStyles}
                           isSearchable={false}
-                          placeholder="Pilih Nomor Slide"
+                          placeholder="Pilih Poster Kajian yang Ditampilkan"
                           className="w-full text-sm text-gray-900 bg-white border rounded focus:ring-blue-500 focus:border-blue-500"
-                          {...register('urutan')}
+                          {...register('kajian_id')}
                           {...field}
-                          onChange={(option: SingleValue<Option<number>>) => {
+                          onChange={(option: SingleValue<Option<string>>) => {
                             field.onChange(option);
                           }}
                         />
                       )}
                     />
 
-                    {errors.urutan && (
+                    {errors.kajian_id && (
                       <p className="mt-1 text-xs text-red-600">
-                        {errors.urutan.value?.message}
+                        {errors.kajian_id.value?.message}
                       </p>
                     )}
                   </div>
@@ -206,4 +204,4 @@ const SlideToModal = ({
   );
 };
 
-export default SlideToModal;
+export default PosterKajianEditModal;

@@ -22,7 +22,7 @@ const ResetSlideButton = ({
     'resetSlide',
     async () => {
       return fetchAxios.put(
-        `/api/slideshows/e171341f-3146-4eb8-b726-9bde5f3a5468`,
+        `/api/slideshows/2ff26f65-c731-4777-b475-5f554fb689b5`,
         {
           urutan: 1,
           status: 'uncontrolled',

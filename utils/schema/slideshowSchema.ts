@@ -1,8 +1,11 @@
 import * as Yup from 'yup';
 
-import type { EditSlideshowFormValues } from '../../ts/types/schema/SlideshowSchema';
+import type {
+  EditUrutanSlideshowFormValues,
+  EditPosterKajianSlideshowFormValues,
+} from '../../ts/types/schema/SlideshowSchema';
 
-export const editSlideshowSchema: Yup.SchemaOf<EditSlideshowFormValues> =
+export const editUrutanSlideshowSchema: Yup.SchemaOf<EditUrutanSlideshowFormValues> =
   Yup.object().shape({
     urutan: Yup.object()
       .shape({
@@ -10,6 +13,10 @@ export const editSlideshowSchema: Yup.SchemaOf<EditSlideshowFormValues> =
         value: Yup.number().required('Mohohn pilih Nomor Slide'),
       })
       .required('Mohon pilih Nomor Slide'),
+  });
+
+export const editPosterKajianSlideshowSchema: Yup.SchemaOf<EditPosterKajianSlideshowFormValues> =
+  Yup.object().shape({
     kajian_id: Yup.object()
       .shape({
         label: Yup.string().required(
