@@ -12,12 +12,14 @@ import { AllRunningTextType } from '../../../ts/types/main/RunningText';
 type RunningTextSlidePropsType = {
   runningTexts: AllRunningTextType | undefined;
   isReady: boolean;
+  isTVScreen: boolean;
   activeSlideIndex: number | undefined;
 };
 
 const RunningTextSlide = ({
   runningTexts,
   isReady,
+  isTVScreen,
   activeSlideIndex,
 }: RunningTextSlidePropsType) => {
   const swiperRef = useRef<SwiperJS>();
@@ -31,7 +33,11 @@ const RunningTextSlide = ({
   }, [isReady, activeSlideIndex]);
 
   return (
-    <div className="w-full h-full flex items-center font-semibold col-span-2 row-start-2 text-[3.4rem] tracking-wide text-white bg-indigo-400">
+    <div
+      className={`w-full h-full flex items-center font-semibold col-span-2 row-start-2 tracking-wide text-[#e3cf19] bg-[#051b1e] ${
+        isTVScreen ? 'text-5xl' : 'lg:text-2xl xl:text-3xl'
+      }`}
+    >
       <Swiper
         onSwiper={(swiper) => {
           if (swiper) {
@@ -52,7 +58,9 @@ const RunningTextSlide = ({
       >
         {runningTexts?.data?.map((text) => (
           <SwiperSlide key={text.id}>
-            <p className="text-center">{text.text}</p>
+            <p className="text-center">
+              {text.text ?? 'Silakan Tambah Running Text Melalui Dashboard'}
+            </p>
           </SwiperSlide>
         ))}
       </Swiper>

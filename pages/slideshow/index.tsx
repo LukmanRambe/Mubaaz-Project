@@ -30,7 +30,8 @@ const Slideshow: NextPageWithLayout = () => {
   const [slideInterval, setSlideInterval] = useState<number>(15000);
   const { data: slideshowData, refetch: refetchSlideshow } =
     useRemoteGetSlideshow();
-  const { data: allPosterData } = useRemoteGetAllPoster();
+  const { data: allPosterData, isFetching: isFetchingPosterBanner } =
+    useRemoteGetAllPoster();
   const { data: runningTexts } = useRemoteGetAllRunningText();
   const {
     data: kajianData,
@@ -126,6 +127,7 @@ const Slideshow: NextPageWithLayout = () => {
             runningTexts={runningTexts}
             isReady={isReady}
             activeSlideIndex={activeSlideIndex}
+            isFetchingPosterBanner={isFetchingPosterBanner}
           />
         </SwiperSlide>
         <SwiperSlide>
