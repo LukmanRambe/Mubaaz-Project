@@ -4,6 +4,7 @@ import { IoImages } from 'react-icons/io5';
 import { MdTextFields } from 'react-icons/md';
 import { RiSlideshow3Fill } from 'react-icons/ri';
 
+import { NavbarMenus } from '../ts/types/main/Navbar';
 import type { Option } from '../ts/types/main/Option';
 import type { SidebarMenus } from '../ts/types/main/Sidebar';
 import { JadwalShalatType } from '../ts/types/slideshow/JadwalShalat';
@@ -55,6 +56,31 @@ export const generateSidebarMenus = () => {
   ];
 
   return sidebarMenus;
+};
+
+export const generateNavbarMenus = () => {
+  const navbarMenus: NavbarMenus = [
+    {
+      menuName: 'Home',
+      href: '/',
+    },
+    {
+      menuName: 'Agenda',
+      href: '#',
+      subMenu: [
+        {
+          name: 'Kajian',
+          href: '/agenda/kajian',
+        },
+        {
+          name: "Khutbah Jum'at",
+          href: '/agenda/khutbah',
+        },
+      ],
+    },
+  ];
+
+  return navbarMenus;
 };
 
 export const generateJadwalShalat = (

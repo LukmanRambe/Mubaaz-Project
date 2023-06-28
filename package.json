@@ -38,6 +38,7 @@
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^12.3.4",
+    "@types/google-map-react": "^2.1.7",
     "@types/js-cookie": "^3.0.3",
     "@types/lodash.debounce": "^4.0.7",
     "@types/moment-hijri": "^2.1.0",
