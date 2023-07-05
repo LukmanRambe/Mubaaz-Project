@@ -46,7 +46,7 @@ const KritikDanSaran: NextPageWithLayout = () => {
       onSuccess: async (response) => {
         if (response.status === 200) {
           setShowToast(true);
-          setToastMessage('Kritik/Saran berhasil ditambah');
+          setToastMessage('Kritik/Saran berhasil dikirim');
           setToastType('success');
 
           setTimeout(() => {
