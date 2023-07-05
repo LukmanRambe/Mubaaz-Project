@@ -85,7 +85,7 @@ const Navbar: React.FC = () => {
 
                       <p
                         className={`w-fit ${
-                          userData?.role === 'super-admin' &&
+                          userData?.role === 'Super Admin' &&
                           'bg-blue-100 text-blue-600 text-xs font-medium  px-2 py-1 rounded-full'
                         } ${
                           userData?.role === 'Admin' &&
@@ -239,7 +239,7 @@ const Navbar: React.FC = () => {
 
                         <p
                           className={` ${
-                            userData?.role === 'super-admin' &&
+                            userData?.role === 'Super Admin' &&
                             'bg-blue-100 text-blue-600 text-xs font-medium  px-2 py-1 rounded-full'
                           } ${
                             userData?.role === 'Admin' &&
