@@ -3,7 +3,12 @@ import { useContext, useEffect } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Head from 'next/head';
 import { useForm } from 'react-hook-form';
-import { AiFillLock, AiFillUnlock, AiOutlineWarning } from 'react-icons/ai';
+import {
+  AiFillLock,
+  AiFillUnlock,
+  AiOutlineLoading3Quarters,
+  AiOutlineWarning,
+} from 'react-icons/ai';
 
 import AuthLayout from '../../components/main/Layout/AuthLayout';
 import { AuthContext } from '../../context/AuthContext';
@@ -12,14 +17,19 @@ import { LoginFormValues } from '../../ts/types/schema/AuthenticationSchema';
 import { loginSchema } from '../../utils/schema/authenticationSchema';
 
 const LoginPage: NextPageWithLayout = () => {
-  const { login, setLoginFormValues, loginFormValues, errorMessage } =
-    useContext(AuthContext);
+  const {
+    login,
+    setLoginFormValues,
+    loginFormValues,
+    errorMessage,
+    isLoading,
+  } = useContext(AuthContext);
 
   const {
     register,
     handleSubmit,
     watch,
-    formState: { errors, isLoading },
+    formState: { errors },
   } = useForm<LoginFormValues>({
     resolver: yupResolver(loginSchema),
   });
@@ -115,7 +125,7 @@ const LoginPage: NextPageWithLayout = () => {
           <button
             type="submit"
             disabled={watch('username') === '' || watch('password') === ''}
-            className={`relative flex justify-center w-full p-3 text-sm font-semibold text-white transition-all duration-100 rounded-md bg-primary-120 group hover:bg-primary-140 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-100 disabled:bg-primary-120 active:bg-primary-160 disabled:cursor-not-allowed ${
+            className={`relative flex justify-center w-full p-3 text-sm font-semibold text-white transition-all duration-100 rounded-md bg-primary-120 group hover:bg-primary-140 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-100 disabled:bg-primary-60 active:bg-primary-160 disabled:cursor-not-allowed ${
               errorMessage ? 'mt-0' : 'mt-12'
             }`}
           >
@@ -126,7 +136,11 @@ const LoginPage: NextPageWithLayout = () => {
                 <AiFillUnlock className="w-5 h-5 text-white" />
               )}
             </span>
-            {isLoading ? 'loading...' : 'Masuk'}
+            {isLoading ? (
+              <AiOutlineLoading3Quarters className="text-xl text-primary-40 animate-spin" />
+            ) : (
+              'Masuk'
+            )}
           </button>
         </form>
       </article>

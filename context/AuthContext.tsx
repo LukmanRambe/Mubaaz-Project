@@ -151,7 +151,6 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     },
     {
       onSuccess: async (res) => {
-        setIsLoading(true);
         if (res.status === 200) {
           setIsLoading(false);
           setIsAuthenticated(true);
@@ -180,6 +179,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   );
 
   const login = async () => {
+    setIsLoading(true);
     executeLogin.mutate();
   };
 
