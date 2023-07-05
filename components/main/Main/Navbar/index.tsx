@@ -240,7 +240,7 @@ const Navbar = () => {
 
         {router.pathname === '/' && (
           <section className="w-full">
-            <h1 className="w-full text-3xl font-semibold text-white lg:text-start text-end">
+            <h1 className="w-full text-2xl font-bold tracking-wider text-white uppercase lg:text-3xl text-end lg:text-start">
               Mubaaz
             </h1>
           </section>
