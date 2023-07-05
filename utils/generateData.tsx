@@ -1,7 +1,7 @@
 import { FaCalendarAlt } from 'react-icons/fa';
-import { GiTeacher } from 'react-icons/gi';
+import { GiPayMoney, GiTeacher } from 'react-icons/gi';
 import { IoImages } from 'react-icons/io5';
-import { MdTextFields } from 'react-icons/md';
+import { MdFeedback, MdTextFields } from 'react-icons/md';
 import { RiSlideshow3Fill } from 'react-icons/ri';
 
 import { NavbarMenus } from '../ts/types/main/Navbar';
@@ -53,6 +53,18 @@ export const generateSidebarMenus = () => {
       icon: <RiSlideshow3Fill className={classNames} />,
       role: ['Admin'],
     },
+    {
+      menuName: 'Donasi',
+      href: '/admin/donasi',
+      icon: <GiPayMoney className={classNames} />,
+      role: ['Super Admin', 'Admin'],
+    },
+    {
+      menuName: 'Kritik & Saran',
+      href: '/admin/kritik-dan-saran',
+      icon: <MdFeedback className={classNames} />,
+      role: ['Super Admin', 'Admin'],
+    },
   ];
 
   return sidebarMenus;
@@ -81,6 +93,16 @@ export const generateNavbarMenus = () => {
     {
       menuName: 'Donasi',
       href: '/donasi',
+    },
+    {
+      menuName: 'Lainnya',
+      href: '#',
+      subMenu: [
+        {
+          name: 'Kritik & Saran',
+          href: '/kritik-dan-saran',
+        },
+      ],
     },
   ];
 
@@ -161,6 +183,23 @@ export const generateTableHeadsRunningText = (): string[] => {
   const tableHeadsRunningText = ['No.', 'Teks', 'Urutan', 'Aksi'];
 
   return tableHeadsRunningText;
+};
+
+export const generateTableHeadsKritikDanSaran = (): string[] => {
+  const tableHeadsKritikDanSaran = [
+    'No.',
+    'Nama Pengirim',
+    'Kritik / Saran',
+    'Aksi',
+  ];
+
+  return tableHeadsKritikDanSaran;
+};
+
+export const generateTableHeadsDonasi = (): string[] => {
+  const tableHeadsDonasi = ['No.', 'Nama Pengirim', 'Jumlah Donasi'];
+
+  return tableHeadsDonasi;
 };
 
 export const generateDataPerPageOptions = (): Option<string>[] => {

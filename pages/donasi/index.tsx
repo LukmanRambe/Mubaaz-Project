@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Head from 'next/head';
 import Image from 'next/image';
 
+import ConfirmationDonationCreateModal from '../../components/artifacts/CreateModal/ConfirmationDonationCreateModal';
 import BreadCrumb from '../../components/artifacts/PageHeader/Breadcrumb';
+import Toast from '../../components/artifacts/Toast';
 import MainLayout from '../../components/main/Layout/MainLayout';
 import { NextPageWithLayout } from '../../ts/types/NextPageWithLayout';
 
 const Donasi: NextPageWithLayout = () => {
+  const [isCreateModalShown, setIsCreateModalShown] = useState<boolean>(false);
+  const [showToast, setShowToast] = useState<boolean>(false);
+  const [toastMessage, setToastMessage] = useState<string>('');
+  const [toastType, setToastType] = useState<string>('');
+
   const breadcrumbData = [
     {
       pageName: 'Home',
@@ -32,8 +39,30 @@ const Donasi: NextPageWithLayout = () => {
 
       <BreadCrumb breadCrumbData={breadcrumbData} />
 
+      {showToast && <Toast type={toastType} message={toastMessage} />}
+
+      {isCreateModalShown && (
+        <ConfirmationDonationCreateModal
+          isCreateModalShown={isCreateModalShown}
+          setIsCreateModalShown={setIsCreateModalShown}
+          setShowToast={setShowToast}
+          toastMessage={toastMessage}
+          setToastMessage={setToastMessage}
+          setToastType={setToastType}
+        />
+      )}
+
       <article className="w-full h-full mt-5">
-        <h1 className="mb-10 text-2xl font-bold text-primary-140">Donasi</h1>
+        <section className="flex flex-col items-start justify-between gap-5 mb-6 sm:mb-10 sm:items-center w-52 sm:w-full sm:flex-row">
+          <h1 className="text-2xl font-bold text-primary-140">Donasi</h1>
+
+          <button
+            onClick={() => setIsCreateModalShown(true)}
+            className="w-full px-5 py-[.675rem] text-sm font-semibold text-center text-white transition duration-300 ease-in-out bg-primary-120 rounded-lg cursor-pointer hover:bg-primary-140 focus:outline-none outline-none focus:bg-primary-140 active:bg-primary-160 md:w-64 self-end mb-5 sm:mb-0"
+          >
+            Kirim Bukti Transfer
+          </button>
+        </section>
 
         <section className="flex flex-col flex-wrap justify-between gap-10 md:flex-row">
           <section>

@@ -10,10 +10,9 @@ type PageHeaderProps = {
   options: Option<string>[];
   placeholder: string;
   onChange: (value: SingleValue<Option<string>>) => void;
-  pageLink: string;
-  buttonText: string;
+  pageLink?: string;
+  buttonText?: string;
   searchInput: string;
-  isKaryawan?: boolean;
   onSearch: (event: React.FormEvent<HTMLInputElement>) => void;
 };
 
@@ -61,7 +60,9 @@ const PageHeader: React.FC<PageHeaderProps> = ({
             </div>
           </div>
 
-          <AddButton pageLink={pageLink} buttonText={buttonText} />
+          {pageLink && buttonText && (
+            <AddButton pageLink={pageLink} buttonText={buttonText} />
+          )}
         </>
       ) : (
         <>
@@ -78,7 +79,9 @@ const PageHeader: React.FC<PageHeaderProps> = ({
               />
             </div>
 
-            <AddButton pageLink={pageLink} buttonText={buttonText} />
+            {pageLink && buttonText && (
+              <AddButton pageLink={pageLink} buttonText={buttonText} />
+            )}
           </div>
 
           <div className="relative flex items-center min-w-full">

@@ -16,7 +16,7 @@ const Footer = () => {
         </section>
 
         <section className="w-full">
-          <h3 className="mb-2 text-xl font-bold text-white">Lihat Lainnya</h3>
+          <h3 className="mb-2 text-xl font-bold text-white">Lihat Halaman</h3>
 
           <ul className="w-full text-white list-none">
             <li className="mb-2">
@@ -36,6 +36,26 @@ const Footer = () => {
                   title="Halaman Jadwal Khutbah Jum'at"
                 >
                   Khutbah Jum&apos;at
+                </a>
+              </Link>
+            </li>
+            <li className="mb-2">
+              <Link href="/donasi" passHref>
+                <a
+                  className="tracking-wide transition-all duration-150 ease-in-out hover:underline active:underline"
+                  title="Halaman Jadwal Khutbah Jum'at"
+                >
+                  Donasi
+                </a>
+              </Link>
+            </li>
+            <li className="mb-2">
+              <Link href="/kritik-dan-saran" passHref>
+                <a
+                  className="tracking-wide transition-all duration-150 ease-in-out hover:underline active:underline"
+                  title="Halaman Jadwal Khutbah Jum'at"
+                >
+                  Kritik & Saran
                 </a>
               </Link>
             </li>
