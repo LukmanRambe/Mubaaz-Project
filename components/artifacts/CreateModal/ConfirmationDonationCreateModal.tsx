@@ -59,7 +59,11 @@ const ConfirmationDonationCreateModal = ({
       onSuccess: async (response) => {
         if (response.status === 200) {
           setShowToast(true);
-          setToastMessage('Konfirmasi Donasi berhasil dikirim');
+          setToastMessage(
+            `Terimakasih ${watch(
+              'nama_pengirim'
+            )} telah berdonasi, bukti transfer berhasil disimpan`
+          );
           setToastType('success');
 
           setTimeout(() => {
@@ -111,7 +115,7 @@ const ConfirmationDonationCreateModal = ({
             tabIndex={-1}
             className="fixed inset-0 z-50 flex items-center justify-center w-full h-full md:min-h-screen min-w-screen bg-black/50"
           >
-            <div className="w-[calc(100%-2rem)] sm:w-[35rem] overflow-hidden bg-white shadow-xl lg:w-[32rem] p-5 rounded-2xl h-[27.5rem] md:h-auto">
+            <div className="w-[calc(100%-2rem)] sm:w-[35rem] overflow-hidden bg-white shadow-xl lg:w-[32rem] p-5 rounded-2xl h-[27.5rem] md:h-auto md:max-h-[calc(100%-3rem)]">
               <div className="flex items-center justify-between">
                 <h3 className="text-xl font-medium text-gray-900">
                   Konfirmasi Donasi
@@ -127,7 +131,7 @@ const ConfirmationDonationCreateModal = ({
               </div>
 
               <form
-                className="flex flex-col mt-5 overflow-y-scroll h-[22rem] scrollbar-hide md:h-auto"
+                className="flex flex-col mt-5 overflow-y-scroll h-[22rem] scrollbar-hide md:h-[35rem]"
                 onSubmit={handleSubmit(handleCreateConfirmationDonation)}
               >
                 <div className="w-full mb-5">
