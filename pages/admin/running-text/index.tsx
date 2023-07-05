@@ -1,4 +1,4 @@
-import { useState, useId, useMemo, useEffect } from 'react';
+import { useState, useId, useMemo, useEffect, useContext } from 'react';
 
 import Head from 'next/head';
 import { BiEdit } from 'react-icons/bi';
@@ -12,6 +12,7 @@ import PageLoading from '../../../components/artifacts/Loading/PageLoading';
 import HeaderTitle from '../../../components/artifacts/PageHeader/HeaderTitle';
 import Toast from '../../../components/artifacts/Toast';
 import DashboardLayout from '../../../components/main/Layout/DashboardLayout';
+import { AuthContext } from '../../../context/AuthContext';
 import useRemoteGetAllRunningText from '../../../hooks/remote/useRemoteGetAllRunningText';
 import useRemoteGetRunningText from '../../../hooks/remote/useRemoteGetRunningText';
 import { NextPageWithLayout } from '../../../ts/types/NextPageWithLayout';
@@ -19,6 +20,7 @@ import { generateTableHeadsRunningText } from '../../../utils/generateData';
 
 const RunningText: NextPageWithLayout = () => {
   const uniqueId = useId();
+  const { userData } = useContext(AuthContext);
   const [isDetailModalShown, setIsDetailModalShown] = useState<boolean>(false);
   const [isCreateModalShown, setIsCreateModalShown] = useState<boolean>(false);
   const [isEditModalShown, setIsEditModalShown] = useState<boolean>(false);
@@ -119,12 +121,14 @@ const RunningText: NextPageWithLayout = () => {
             <HeaderTitle headerTitle="List Running Text" />
           </div>
 
-          <button
-            onClick={() => setIsCreateModalShown(true)}
-            className="w-full px-5 py-[.675rem] text-sm font-semibold text-center text-white transition duration-300 ease-in-out bg-primary-120 rounded-full cursor-pointer hover:bg-primary-140 focus:outline-none outline-none focus:bg-primary-140 active:bg-primary-160 md:w-64 self-end mb-5"
-          >
-            Tambah Running Text +
-          </button>
+          {userData?.role !== 'Admin' && (
+            <button
+              onClick={() => setIsCreateModalShown(true)}
+              className="w-full px-5 py-[.675rem] text-sm font-semibold text-center text-white transition duration-300 ease-in-out bg-primary-120 rounded-full cursor-pointer hover:bg-primary-140 focus:outline-none outline-none focus:bg-primary-140 active:bg-primary-160 md:w-64 self-end mb-5"
+            >
+              Tambah Running Text +
+            </button>
+          )}
 
           <div className="relative pt-3 pb-5 bg-white shadow-md rounded-xl">
             <div className="overflow-x-auto overflow-y-hidden">
@@ -182,15 +186,18 @@ const RunningText: NextPageWithLayout = () => {
                                     <TbReportSearch className="text-lg text-white cursor-pointer" />
                                   </div>
                                 </button>
-                                <button
-                                  onClick={() =>
-                                    handleOpenEditModal(runningText.id)
-                                  }
-                                >
-                                  <div className="p-2 transition-all duration-150 bg-yellow-400 rounded-lg outline-none cursor-pointer hover:bg-yellow-500 active:bg-yellow-600 focus:outline-none focus:bg-yellow-600">
-                                    <BiEdit className="text-lg text-white cursor-pointer" />
-                                  </div>
-                                </button>
+
+                                {userData?.role !== 'Admin' && (
+                                  <button
+                                    onClick={() =>
+                                      handleOpenEditModal(runningText.id)
+                                    }
+                                  >
+                                    <div className="p-2 transition-all duration-150 bg-yellow-400 rounded-lg outline-none cursor-pointer hover:bg-yellow-500 active:bg-yellow-600 focus:outline-none focus:bg-yellow-600">
+                                      <BiEdit className="text-lg text-white cursor-pointer" />
+                                    </div>
+                                  </button>
+                                )}
 
                                 <DeleteButton
                                   queryKey="deleteRunningText"

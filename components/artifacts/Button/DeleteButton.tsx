@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 import { AxiosError } from 'axios';
 import { useRouter } from 'next/router';
@@ -6,6 +6,7 @@ import { AiOutlineWarning } from 'react-icons/ai';
 import { BiTrash } from 'react-icons/bi';
 import { useMutation } from 'react-query';
 
+import { AuthContext } from '../../../context/AuthContext';
 import { fetchAxios } from '../../../libs/axios';
 import ButtonLoading from '../Loading/ButtonLoading';
 import Toast from '../Toast';
@@ -25,12 +26,13 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({
   cardDelete,
   dataName,
 }) => {
+  const router = useRouter();
+  const { userData } = useContext(AuthContext);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [showToast, setShowToast] = useState<boolean>(false);
   const [toastMessage, setToastMessage] = useState<string>('');
   const [toastType, setToastType] = useState<string>('');
-  const router = useRouter();
 
   const deleteData = useMutation(
     queryKey,
@@ -104,20 +106,23 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({
 
   return (
     <>
-      <button
-        onClick={() => setShowModal(true)}
-        className={`p-2 ${
-          cardDelete
-            ? 'bg-white'
-            : 'bg-red-600 hover:bg-red-700 active:bg-red-800 transition-all duration-150 outline-none focus:bg-red-700 focus:outline-none'
-        } rounded-lg cursor-pointer`}
-      >
-        <BiTrash
-          className={`text-lg ${cardDelete ? 'text-red-600' : 'text-white'}`}
-        />
-      </button>
+      {userData?.role !== 'Admin' && (
+        <button
+          onClick={() => setShowModal(true)}
+          className={`p-2 ${
+            cardDelete
+              ? 'bg-white'
+              : 'bg-red-600 hover:bg-red-700 active:bg-red-800 transition-all duration-150 outline-none focus:bg-red-700 focus:outline-none'
+          } rounded-lg cursor-pointer`}
+        >
+          <BiTrash
+            className={`text-lg ${cardDelete ? 'text-red-600' : 'text-white'}`}
+          />
+        </button>
+      )}
 
       {showToast && <Toast message={toastMessage} type={toastType} />}
+
       {showModal && (
         <>
           <div

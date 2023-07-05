@@ -1,4 +1,4 @@
-import { useState, useId, useMemo, useEffect } from 'react';
+import { useState, useId, useMemo, useEffect, useContext } from 'react';
 
 import moment from 'moment';
 import Head from 'next/head';
@@ -13,6 +13,7 @@ import PageLoading from '../../../../components/artifacts/Loading/PageLoading';
 import PageHeader from '../../../../components/artifacts/PageHeader';
 import HeaderTitle from '../../../../components/artifacts/PageHeader/HeaderTitle';
 import DashboardLayout from '../../../../components/main/Layout/DashboardLayout';
+import { AuthContext } from '../../../../context/AuthContext';
 import useRemoteGetAllKhutbah from '../../../../hooks/remote/useRemoteGetAllKhutbah';
 import { Option } from '../../../../ts/types/main/Option';
 import { NextPageWithLayout } from '../../../../ts/types/NextPageWithLayout';
@@ -24,6 +25,7 @@ import {
 
 const Khutbah: NextPageWithLayout = () => {
   const uniqueId = useId();
+  const { userData } = useContext(AuthContext);
   const [pageIndex, setPageIndex] = useState<number>(1);
   const [dataLimit, setDataLimit] = useState<number>(15);
   const [searchInput, setSearchInput] = useState<string>('');
@@ -122,15 +124,17 @@ const Khutbah: NextPageWithLayout = () => {
               <table className="w-full overflow-x-auto text-sm text-left">
                 <thead className="text-sm text-primary-160 capitalize bg-white border-b border-[#9FA284] border-opacity-20">
                   <tr>
-                    {tableHeads.map((head, index) => (
-                      <th
-                        key={`${uniqueId}${index}`}
-                        scope="col"
-                        className="px-5 p-7"
-                      >
-                        {head}
-                      </th>
-                    ))}
+                    {tableHeads.map((head, index) =>
+                      userData?.role === 'Admin' && head === 'Aksi' ? null : (
+                        <th
+                          key={`${uniqueId}${index}`}
+                          scope="col"
+                          className="px-5 p-7"
+                        >
+                          {head}
+                        </th>
+                      )
+                    )}
                   </tr>
                 </thead>
                 <tbody>
@@ -167,24 +171,26 @@ const Khutbah: NextPageWithLayout = () => {
                                 ? moment(khutbah.tanggal).format('DD MMMM YYYY')
                                 : '-'}
                             </td>
-                            <td className="px-5 p-7">
-                              <div className="flex items-center justify-between gap-3 w-fit">
-                                <Link
-                                  href={`/admin/agenda/khutbah/edit/${khutbah.id}`}
-                                >
-                                  <a className="p-2 transition-all duration-150 bg-yellow-400 rounded-lg outline-none cursor-pointer hover:bg-yellow-500 active:bg-yellow-600 focus:outline-none focus:bg-yellow-600">
-                                    <BiEdit className="text-lg text-white cursor-pointer" />
-                                  </a>
-                                </Link>
+                            {userData?.role !== 'Admin' && (
+                              <td className="px-5 p-7">
+                                <div className="flex items-center justify-between gap-3 w-fit">
+                                  <Link
+                                    href={`/admin/agenda/khutbah/edit/${khutbah.id}`}
+                                  >
+                                    <a className="p-2 transition-all duration-150 bg-yellow-400 rounded-lg outline-none cursor-pointer hover:bg-yellow-500 active:bg-yellow-600 focus:outline-none focus:bg-yellow-600">
+                                      <BiEdit className="text-lg text-white cursor-pointer" />
+                                    </a>
+                                  </Link>
 
-                                <DeleteButton
-                                  queryKey="deleteKhutbah"
-                                  endPointUrl={`/api/khutbahs/${khutbah.id}`}
-                                  refetch={refetch}
-                                  dataName="Khutbah"
-                                />
-                              </div>
-                            </td>
+                                  <DeleteButton
+                                    queryKey="deleteKhutbah"
+                                    endPointUrl={`/api/khutbahs/${khutbah.id}`}
+                                    refetch={refetch}
+                                    dataName="Khutbah"
+                                  />
+                                </div>
+                              </td>
+                            )}
                           </tr>
                         ))
                       )}

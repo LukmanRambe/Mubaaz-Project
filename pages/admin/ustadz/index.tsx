@@ -1,4 +1,4 @@
-import { useState, useId, useMemo, useEffect } from 'react';
+import { useState, useId, useMemo, useEffect, useContext } from 'react';
 
 import Head from 'next/head';
 import Link from 'next/link';
@@ -12,6 +12,7 @@ import PageLoading from '../../../components/artifacts/Loading/PageLoading';
 import PageHeader from '../../../components/artifacts/PageHeader';
 import HeaderTitle from '../../../components/artifacts/PageHeader/HeaderTitle';
 import DashboardLayout from '../../../components/main/Layout/DashboardLayout';
+import { AuthContext } from '../../../context/AuthContext';
 import useRemoteGetAllUstadz from '../../../hooks/remote/useRemoteGetAllUstadz';
 import { Option } from '../../../ts/types/main/Option';
 import { NextPageWithLayout } from '../../../ts/types/NextPageWithLayout';
@@ -23,6 +24,7 @@ import {
 
 const Ustadz: NextPageWithLayout = () => {
   const uniqueId = useId();
+  const { userData } = useContext(AuthContext);
   const [pageIndex, setPageIndex] = useState<number>(1);
   const [dataLimit, setDataLimit] = useState<number>(15);
   const [searchInput, setSearchInput] = useState<string>('');
@@ -121,15 +123,17 @@ const Ustadz: NextPageWithLayout = () => {
               <table className="w-full overflow-x-auto text-sm text-left">
                 <thead className="text-sm text-primary-160 capitalize bg-white border-b border-[#9FA284] border-opacity-20">
                   <tr>
-                    {tableHeads.map((head, index) => (
-                      <th
-                        key={`${uniqueId}${index}`}
-                        scope="col"
-                        className="px-5 p-7"
-                      >
-                        {head}
-                      </th>
-                    ))}
+                    {tableHeads.map((head, index) =>
+                      userData?.role === 'Admin' && head === 'Aksi' ? null : (
+                        <th
+                          key={`${uniqueId}${index}`}
+                          scope="col"
+                          className="px-5 p-7"
+                        >
+                          {head}
+                        </th>
+                      )
+                    )}
                   </tr>
                 </thead>
                 <tbody>
@@ -162,22 +166,26 @@ const Ustadz: NextPageWithLayout = () => {
                             </td>
                             <td className="px-5 p-7">{ustadz.alamat}</td>
                             <td className="px-5 p-7">{ustadz.nomor_wa}</td>
-                            <td className="px-5 p-7">
-                              <div className="flex items-center justify-between gap-3 w-fit">
-                                <Link href={`/admin/ustadz/edit/${ustadz.id}`}>
-                                  <a className="p-2 transition-all duration-150 bg-yellow-400 rounded-lg outline-none cursor-pointer hover:bg-yellow-500 active:bg-yellow-600 focus:outline-none focus:bg-yellow-600">
-                                    <BiEdit className="text-lg text-white cursor-pointer" />
-                                  </a>
-                                </Link>
+                            {userData?.role !== 'Admin' && (
+                              <td className="px-5 p-7">
+                                <div className="flex items-center justify-between gap-3 w-fit">
+                                  <Link
+                                    href={`/admin/ustadz/edit/${ustadz.id}`}
+                                  >
+                                    <a className="p-2 transition-all duration-150 bg-yellow-400 rounded-lg outline-none cursor-pointer hover:bg-yellow-500 active:bg-yellow-600 focus:outline-none focus:bg-yellow-600">
+                                      <BiEdit className="text-lg text-white cursor-pointer" />
+                                    </a>
+                                  </Link>
 
-                                <DeleteButton
-                                  queryKey="deleteUstadz"
-                                  endPointUrl={`/api/ustadzs/${ustadz.id}`}
-                                  refetch={refetch}
-                                  dataName="Ustadz"
-                                />
-                              </div>
-                            </td>
+                                  <DeleteButton
+                                    queryKey="deleteUstadz"
+                                    endPointUrl={`/api/ustadzs/${ustadz.id}`}
+                                    refetch={refetch}
+                                    dataName="Ustadz"
+                                  />
+                                </div>
+                              </td>
+                            )}
                           </tr>
                         ))
                       )}
