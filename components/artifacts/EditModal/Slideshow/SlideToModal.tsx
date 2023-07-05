@@ -69,7 +69,7 @@ const SlideToModal = ({
     'editSlideshow',
     async () => {
       return fetchAxios.put(
-        `/api/slideshows/2ff26f65-c731-4777-b475-5f554fb689b5`,
+        `/api/slideshows/780ab88a-a27e-47d2-a00f-c310736aa7ed`,
         {
           urutan: watch('urutan').value,
           status: 'controlled',
