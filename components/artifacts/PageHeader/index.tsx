@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { SingleValue } from 'react-select';
 
@@ -5,11 +6,13 @@ import useMediaQuery from '../../../hooks/useMediaQuery';
 import { Option } from '../../../ts/types/main/Option';
 import AddButton from '../Button/AddButton';
 import DataPerPage from '../DataPerPage';
+import DonasiDataType from '../DonasiDataType';
 
 type PageHeaderProps = {
   options: Option<string>[];
   placeholder: string;
   onChange: (value: SingleValue<Option<string>>) => void;
+  onFilterChange?: (value: SingleValue<Option<string>>) => void;
   pageLink?: string;
   buttonText?: string;
   searchInput: string;
@@ -20,12 +23,14 @@ const PageHeader: React.FC<PageHeaderProps> = ({
   options,
   placeholder,
   onChange,
+  onFilterChange,
   pageLink,
   buttonText,
   searchInput,
   onSearch,
 }) => {
   const isLargeScreen = useMediaQuery('(min-width: 768px)');
+  const router = useRouter();
 
   return (
     <div className="flex flex-col items-end justify-between gap-4 mb-4 md:flex-row">
@@ -43,6 +48,23 @@ const PageHeader: React.FC<PageHeaderProps> = ({
                 onChange={onChange}
               />
             </div>
+
+            {router.pathname === '/admin/donasi' && onFilterChange && (
+              <div className="min-w-fit">
+                <label className="block mb-2 text-sm font-semibold text-gray-900">
+                  Filter
+                </label>
+
+                <DonasiDataType
+                  options={[
+                    { label: 'Semua', value: 'semua' },
+                    { label: 'Mingguan', value: 'mingguan' },
+                  ]}
+                  placeholder="Semua"
+                  onChange={onFilterChange}
+                />
+              </div>
+            )}
 
             <div className="relative flex items-center min-w-fit">
               <span className="absolute ml-3">
@@ -78,6 +100,23 @@ const PageHeader: React.FC<PageHeaderProps> = ({
                 onChange={onChange}
               />
             </div>
+
+            {router.pathname === '/admin/donasi' && onFilterChange && (
+              <div className="min-w-fit">
+                <label className="block mb-2 text-sm font-semibold text-gray-900">
+                  Filter
+                </label>
+
+                <DonasiDataType
+                  options={[
+                    { label: 'Semua', value: 'semua' },
+                    { label: 'Mingguan', value: 'mingguan' },
+                  ]}
+                  placeholder="Semua"
+                  onChange={onFilterChange}
+                />
+              </div>
+            )}
 
             {pageLink && buttonText && (
               <AddButton pageLink={pageLink} buttonText={buttonText} />

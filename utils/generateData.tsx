@@ -92,7 +92,11 @@ export const generateNavbarMenus = () => {
     },
     {
       menuName: 'Donasi',
-      href: '/donasi',
+      href: '#',
+      subMenu: [
+        { name: 'Donasi', href: '/donasi' },
+        { name: 'Laporan Saldo', href: '/laporan-saldo' },
+      ],
     },
     {
       menuName: 'Lainnya',
@@ -196,8 +200,11 @@ export const generateTableHeadsKritikDanSaran = (): string[] => {
   return tableHeadsKritikDanSaran;
 };
 
-export const generateTableHeadsDonasi = (): string[] => {
-  const tableHeadsDonasi = ['No.', 'Nama Pengirim', 'Jumlah Donasi'];
+export const generateTableHeadsDonasi = (type: string): string[] => {
+  const tableHeadsDonasi =
+    type === 'semua'
+      ? ['No.', 'Nama Pengirim', 'Jumlah Donasi']
+      : ['No.', 'Minggu Ke- (Tanggal)', 'Total Donasi'];
 
   return tableHeadsDonasi;
 };
