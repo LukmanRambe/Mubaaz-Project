@@ -70,10 +70,10 @@ const LaporanSaldo: NextPageWithLayout = () => {
                     <td className="px-6 sm:px-10 2xl:px-16 p-7">{index + 1}</td>
                     <td className="px-6 sm:px-10 2xl:px-16 p-7">
                       {saldo.minggu &&
-                        `Minggu Ke-${+saldo.minggu - 1} (${moment(
-                          `${saldo.tahun}-W${saldo.minggu - 1}`
+                        `Minggu Ke-${saldo.minggu} (${moment(
+                          `${saldo.tahun}-W${saldo.minggu}`
                         )
-                          .startOf('isoWeeks')
+                          .startOf('week')
                           .weekday(5)
                           .format('D MMMM YYYY')})`}
                     </td>{' '}

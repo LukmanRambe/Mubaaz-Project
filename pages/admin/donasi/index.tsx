@@ -230,10 +230,10 @@ const Donasi: NextPageWithLayout = () => {
                               {donasiDataType === 'semua'
                                 ? donasi.nama_pengirim
                                 : donasi.minggu &&
-                                  `Minggu Ke-${+donasi.minggu - 1} (${moment(
-                                    `${donasi.tahun}-W${donasi.minggu - 1}`
+                                  `Minggu Ke-${donasi.minggu} (${moment(
+                                    `${donasi.tahun}-W${donasi.minggu}`
                                   )
-                                    .startOf('isoWeeks')
+                                    .startOf('week')
                                     .weekday(5)
                                     .format('D MMMM YYYY')})`}
                             </td>
